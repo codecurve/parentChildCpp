@@ -8,9 +8,9 @@ Some features:
 
 - Children only created through owning parent so that they are managed by parent.
 - std::shared_ptr used for memory management.
-- Attempt at const correctnes
+- Attempt at const correctness
 
-![2 rectangles labelled A and B, line between, "1" cardinality on A end, "*" cardinality on B end.](TestCppMult.PNG "UML diagram for 1-to-many relationship")
+![2 rectangles labeled A and B, line between, "1" cardinality on A end, "*" cardinality on B end.](TestCppMult.PNG "UML diagram for 1-to-many relationship")
 
 To do:
 - What about removing a child?
