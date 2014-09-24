@@ -33,7 +33,7 @@ class A :
 public:
     //! Construct passing in value for arbitrary data member.
     //! \param name will be stored as the arbitrary data member.
-    A(const std::wstring name);
+    A(std::wstring name);
     
     //! Getter for arbitrary data member
     //! \return the value of the arbitrary data member

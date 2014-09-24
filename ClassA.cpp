@@ -12,7 +12,7 @@
 using namespace std;
 
 A::A(wstring name) :
-  mName(name)
+mName(std::move(name))
 {}
 
 
