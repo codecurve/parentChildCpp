@@ -5,8 +5,8 @@
 //  Copyright (c) 2014 University of Auckland.
 //
 
-#include "ClassB.h"
 #include "ClassA.h"
+#include "ClassB.h"
 
 using namespace std;
 

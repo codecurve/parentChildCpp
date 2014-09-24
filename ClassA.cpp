@@ -6,8 +6,9 @@
 //
 
 #include "ClassA.h"
-#include <memory>
+
 #include <algorithm>
+#include <memory>
 
 using namespace std;
 

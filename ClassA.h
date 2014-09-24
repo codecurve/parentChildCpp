@@ -9,8 +9,9 @@
 #define ClassA_h
 
 #include "ClassB.h"
-#include <vector>
+
 #include <string>
+#include <vector>
 
 
 //! For collection of const children (i.e. each element immutable).

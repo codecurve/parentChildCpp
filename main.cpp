@@ -16,10 +16,10 @@
  * So far this has only been tested on XCode 5.1.1
  */
 
+#include "ClassA.h"
+
 #include <iostream>
 #include <memory>
-
-#include "ClassA.h"
 
 using namespace std;
 
