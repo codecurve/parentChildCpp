@@ -16,7 +16,7 @@ B::B(const int count, weak_ptr<A> a):
 {}
 
 
-const int B::getCount() const {
+int B::getCount() const {
     return mCount;
 }
 

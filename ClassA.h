@@ -37,7 +37,7 @@ public:
     
     //! Getter for arbitrary data member
     //! \return the value of the arbitrary data member
-    const std::wstring getName() const;
+    std::wstring getName() const;
     
     /** Get read-only collection of children
      *

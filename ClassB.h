@@ -28,7 +28,7 @@ class B {
 
 public:
     //! Getter for arbitrary data member.
-    const int getCount() const;
+    int getCount() const;
     
     //! Setter for arbitrary data member.
     void setCount(const int);

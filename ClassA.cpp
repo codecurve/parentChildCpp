@@ -16,7 +16,7 @@ A::A(wstring name) :
 {}
 
 
-const wstring A::getName() const {
+wstring A::getName() const {
     return mName;
 }
 
