@@ -10,7 +10,7 @@
 
 using namespace std;
 
-B::B(const int count, weak_ptr<A> a):
+B::B(const int count, weak_ptr<A> a, const this_is_private &):
   mCount(count),
   mObjectA(a)
 {}

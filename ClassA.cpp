@@ -34,7 +34,7 @@ bCollectionT A::getBs() {
 
 
 const shared_ptr<const B> A::createB(int count) {
-    shared_ptr<B> bsp(new B(count, shared_from_this())); // Have to use "shared_from_this"
+    shared_ptr<B> bsp(B::create(count, shared_from_this()));
     bs.push_back(bsp);
     return bs.back();
 }
