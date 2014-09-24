@@ -15,10 +15,10 @@
 
 //! For collection of const children (i.e. each element immutable).
 //! Overall collection is also not mutable
-typedef std::vector<std::shared_ptr<const B>> const bCollectionConstT;
+using bCollectionConstT = std::vector<std::shared_ptr<const B>> const;
 
 //! Overall collection is not mutable, but each element is mutable
-typedef std::vector<std::shared_ptr<B>> const bCollectionT;
+using bCollectionT = std::vector<std::shared_ptr<B>> const;
 
 //! The class for a parent object
 class A :
