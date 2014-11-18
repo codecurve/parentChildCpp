@@ -54,7 +54,7 @@ int main(int argc, const char * argv[])
     // If we start out with a const parent (i.e. instance of A), we can't even add children!
     const shared_ptr<const A> ac = const_pointer_cast<const A>(make_shared<A>(L"The second A object"));
 //    ac->createB(5); // Compile error <= const.
-//    bCollectionT bsc = ac->getBs(); // Compile error <= const.
+//    childCollectionT<A,B> bsc = ac->getChildren(); // Compile error <= const.
     childCollectionConstT<A,B> bsc = ac->getChildrenReadOnly();
 //    bsc[1]->setCount(444); // Compile error <= const.
 //    bsc.push_back(1); // Compile error <= const.
@@ -78,7 +78,7 @@ int main(int argc, const char * argv[])
     }
 
 //    ac2->createB(5); // Compile error <= const.
-//    bCollectionT bsc22 = ac2->getBs(); // Compile error <= const.
+//    childCollectionT<A,B> bsc22 = ac2->getChildren(); // Compile error <= const.
 //    bsc2[1]->setCount(444); // Compile error <= const.
 //    bsc2.push_back(1); // Compile error <= const.
     
