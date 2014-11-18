@@ -12,29 +12,26 @@
 
 using namespace std;
 
-A::A(wstring name) :
-mName(std::move(name))
-{}
+template<typename parent, typename child>
+Parent<parent, child>::Parent() {}
 
 
-wstring A::getName() const {
-    return mName;
+template<typename parent, typename child>
+childCollectionConstT<parent, child> Parent<parent, child>::getChildrenReadOnly() const {
+    childCollectionConstT<parent, child> childrenConst(children.begin(), children.end()); // Have to copy to get const version.
+    return childrenConst;
 }
 
 
-bCollectionConstT A::getBsReadOnly() const {
-    bCollectionConstT bsc(bs.begin(), bs.end()); // Have to copy to get const version.
-    return bsc;
+template<typename parent, typename child>
+childCollectionT<parent, child> Parent<parent, child>::getChildren() {
+    return children;
 }
 
 
-bCollectionT A::getBs() {
-    return bs;
-}
-
-
-const shared_ptr<const B> A::createB(int count) {
-    shared_ptr<B> bsp(B::create(count, shared_from_this()));
-    bs.push_back(bsp);
-    return bs.back();
+template<typename parent, typename child>
+const shared_ptr<const Child<parent, child>> Parent<parent, child>::createChild() {
+    shared_ptr<Child<parent, child>> childp(Child<parent, child>::create(Parent<A, B>::shared_from_this()));
+    children.push_back(childp);
+    return children.back();
 }

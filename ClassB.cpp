@@ -10,20 +10,13 @@
 
 using namespace std;
 
-B::B(const int count, weak_ptr<A> a, const this_is_private &):
-  mCount(count),
-  mObjectA(a)
+template<typename parent, typename child>
+Child<parent, child>::Child(weak_ptr<Parent<parent, child>> p, const this_is_private &):
+  mObjectParent(p)
 {}
 
 
-int B::getCount() const {
-    return mCount;
-}
-
-void B::setCount(const int count) {
-    mCount = count;
-}
-
-const weak_ptr<const A> B::getA() const {
-    return mObjectA;
+template<typename parent, typename child>
+const weak_ptr<const Parent<parent, child>> Child<parent, child>::getParent() const {
+    return mObjectParent;
 }

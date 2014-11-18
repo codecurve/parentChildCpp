@@ -37,9 +37,10 @@ int main(int argc, const char * argv[])
     a->createB(-345);
     a->createB(2316724);
     a->createB(0);
-    bCollectionT bs = a->getBs();
+    childCollectionT<A,B> bs = a->getChildren();
     //bs.push_back(make_shared<B>(42)); // Compile error <= const (otherwise new children could be "smuggled in").
-    for(auto b : bs) {
+    for(auto bg : bs) {
+        const B b(static_cast<const B>(*bg));
         b->setCount(b->getCount()*10000); // Demonstrate that each child is mutable.
         auto aName = b->getA().lock()->getName();
         wcout << b->getCount() << " - " << aName  << endl;

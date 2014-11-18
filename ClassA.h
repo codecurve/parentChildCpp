@@ -16,36 +16,32 @@
 
 //! For collection of const children (i.e. each element immutable).
 //! Overall collection is also not mutable
-using bCollectionConstT = std::vector<std::shared_ptr<const B>> const;
+template<typename parent, typename child>
+using childCollectionConstT = std::vector<std::shared_ptr<const Child<parent, child>>> const;
 
 //! Overall collection is not mutable, but each element is mutable
-using bCollectionT = std::vector<std::shared_ptr<B>> const;
+template<typename parent, typename child>
+using childCollectionT = std::vector<std::shared_ptr<Child<parent, child>>> const;
 
 //! The class for a parent object
-class A :
-  public std::enable_shared_from_this<A> // Needed so that a reference to the A parent object creating the B child object can be stored by the B child object.
+template<typename parent, typename child>
+class Parent :
+  public std::enable_shared_from_this<Parent<parent, child>> // Needed so that a reference to the A parent object creating the B child object can be stored by the B child object.
 {
     //! Children
-    std::vector<std::shared_ptr<B>> bs;
+    std::vector<std::shared_ptr<Child<parent, child>>> children;
     
-    //! Arbitrary data member
-    std::wstring mName;
-
 public:
     //! Construct passing in value for arbitrary data member.
     //! \param name will be stored as the arbitrary data member.
-    A(std::wstring name);
-    
-    //! Getter for arbitrary data member
-    //! \return the value of the arbitrary data member
-    std::wstring getName() const;
-    
+    Parent<parent, child>();
+  
     /** Get read-only collection of children
      *
      * Each child element is immutable.
      * \return The collection of children, read-only.
      */
-    bCollectionConstT getBsReadOnly() const;
+    childCollectionConstT<parent, child> getChildrenReadOnly() const;
 
     /** Get collection of mutable children
      *
@@ -53,13 +49,23 @@ public:
      * Overall membership of collection is still fixed.
      * \return The collection of mutable children.
      */
-    bCollectionT getBs();
+    childCollectionT<parent, child> getChildren();
     
     /**
      * Create a child B object, of which this object is the parent
      * \return a pointer the newly created child object.
      */
-    const std::shared_ptr<const B> createB(int);
+    const std::shared_ptr<const Child<parent, child>> createChild();
 };
+
+class B;
+
+class A: public Parent<A, B> {
+public:
+  std::wstring name_;
+  A(std::wstring name) : name_(name) {}
+  B createB(int value) { createChild(value); }
+};
+
 
 #endif
