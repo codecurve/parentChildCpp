@@ -56,7 +56,7 @@ public:
      * \return a pointer the newly created child object.
      */
     std::shared_ptr<child> createChild() {
-      std::shared_ptr<child> childp(Child<parent, child>::create(parent::shared_from_this()));
+      std::shared_ptr<child> childp(Child<parent, child>::create(Parent<parent, child>::shared_from_this()));
       children.push_back(childp);
       return children.back();
     }
