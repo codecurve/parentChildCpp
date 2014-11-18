@@ -11,12 +11,12 @@
 using namespace std;
 
 template<typename parent, typename child>
-Child<parent, child>::Child(weak_ptr<Parent<parent, child>> p, const this_is_private &):
+Child<parent, child>::Child(weak_ptr<parent> p, const this_is_private &):
   mObjectParent(p)
 {}
 
 
 template<typename parent, typename child>
-const weak_ptr<const Parent<parent, child>> Child<parent, child>::getParent() const {
+const weak_ptr<const parent> Child<parent, child>::getParent() const {
     return mObjectParent;
 }

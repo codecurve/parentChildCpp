@@ -39,11 +39,9 @@ int main(int argc, const char * argv[])
     a->createB(0);
     childCollectionT<A,B> bs = a->getChildren();
     //bs.push_back(make_shared<B>(42)); // Compile error <= const (otherwise new children could be "smuggled in").
-    for(auto bg : bs) {
-        auto b = static_pointer_cast<B>(bg);
+    for(auto b : bs) {
         b->setCount(b->getCount()*10000); // Demonstrate that each child is mutable.
-        auto ag = b->Child<A,B>::getParent().lock();
-        auto a = static_pointer_cast<A>(ag);
+        shared_ptr<const A> a = b->getParent().lock();
         auto aName = a->getName();
         wcout << b->getCount() << " - " << aName  << endl;
     }
@@ -51,10 +49,8 @@ int main(int argc, const char * argv[])
     cout << "**********************" << endl;
 
     // Repeat the above output (this demonstrates that we really modified the underlying children, not just copies of them.
-    for(auto bg : a->getChildren()) {
-        auto b = static_pointer_cast<B>(bg);
-        auto ag = b->Child<A,B>::getParent().lock();
-        auto a = static_pointer_cast<A>(ag);
+    for(auto b : a->getChildren()) {
+        auto a = b->getParent().lock();
         auto aName = a->getName();
         wcout << b->getCount() << " - " << aName << endl;
     }
@@ -68,10 +64,8 @@ int main(int argc, const char * argv[])
     childCollectionConstT<A,B> bsc = ac->getChildrenReadOnly();
 //    bsc[1]->setCount(444); // Compile error <= const.
 //    bsc.push_back(1); // Compile error <= const.
-    for(auto bg : bsc) {
-        auto b = static_pointer_cast<B>(bg);
-        auto ag = b->Child<A,B>::getParent().lock();
-        auto a = static_pointer_cast<A>(ag);
+    for(auto b : bsc) {
+        auto a = b->getParent().lock();
         auto aName = a->getName();
         wcout << b->getCount() << " - " << aName << endl;
     }
@@ -79,14 +73,12 @@ int main(int argc, const char * argv[])
     cout << "**********************" << endl;
     
     // If we have a const child, then the handle we get to its parent is also const.
-    const shared_ptr<B const> b1(a->createB(21112));
+    const shared_ptr<B> b1(a->createB(21112));
     auto ac2 = b1->getParent().lock();
     auto bsc2 = ac2->getChildrenReadOnly();
 
-    for(auto bg : bsc2) {
-        auto b = static_pointer_cast<B>(bg);
-        auto ag = b->Child<A,B>::getParent().lock();
-        auto a = static_pointer_cast<A>(ag);
+    for(auto b : bsc2) {
+        auto a = b->getParent().lock();
         auto aName = a->getName();
         wcout << b->getCount() << " - " << aName << endl;
     }
