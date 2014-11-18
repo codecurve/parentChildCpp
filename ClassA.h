@@ -64,7 +64,13 @@ class A: public Parent<A, B> {
 public:
   std::wstring name_;
   A(std::wstring name) : name_(name) {}
-  B createB(int value) { createChild(value); }
+  const std::shared_ptr<B> createB(int value) {
+    auto bg = createChild();
+    auto b = std::static_pointer_cast<B>(bg);
+    b->count_ = value;
+    return b;
+  }
+  std::wstring getName() {return name_;}
 };
 
 
