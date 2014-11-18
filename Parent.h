@@ -1,10 +1,3 @@
-//
-//  Parent.h
-//
-//  Created by Randall Britten on 16/09/14.
-//  Copyright (c) 2014 University of Auckland.
-//
-
 #ifndef Parent_h
 #define Parent_h
 

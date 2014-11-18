@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//
-//  Created by Randall Britten on 16/09/14.
-//  Copyright (c) 2014 University of Auckland.
-//
-
 /**
  * Demonstrates one-to-many relationship with parent ownership semantics,
  * and bi-directional navigability.

@@ -1,10 +1,3 @@
-//
-//  ClassA.h
-//
-//  Created by Randall Britten on 19/11/14.
-//  Copyright (c) 2014 University of Auckland.
-//
-
 #ifndef ClassA_h
 #define ClassA_h
 

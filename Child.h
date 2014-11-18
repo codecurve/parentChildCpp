@@ -1,10 +1,3 @@
-//
-//  Child.h
-//
-//  Created by Randall Britten on 16/09/14.
-//  Copyright (c) 2014 University of Auckland.
-//
-
 #ifndef Child_h
 #define Child_h
 

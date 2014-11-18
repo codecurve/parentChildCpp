@@ -1,10 +1,3 @@
-//
-//  ClassB.h
-//
-//  Created by Randall Britten on 19/11/14.
-//  Copyright (c) 2014 University of Auckland.
-//
-
 #ifndef ClassB_h
 #define ClassB_h
 
