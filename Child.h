@@ -1,12 +1,12 @@
 //
-//  ClassB.h
+//  Child.h
 //
 //  Created by Randall Britten on 16/09/14.
 //  Copyright (c) 2014 University of Auckland.
 //
 
-#ifndef ClassB_h
-#define ClassB_h
+#ifndef Child_h
+#define Child_h
 
 #include <memory>
 template<typename parent, typename child>
@@ -39,38 +39,12 @@ public:
      
         \see Parent::createChild
      */
-    explicit Child<parent, child>(std::weak_ptr<parent> p, const this_is_private &);
+    explicit Child<parent, child>(std::weak_ptr<parent> p, const this_is_private &): mObjectParent(p) {}
 
     //! Get a weak reference to parent.
-    const std::weak_ptr<const parent> getParent() const;
-};
-
-template<typename parent, typename child>
-Child<parent, child>::Child(std::weak_ptr<parent> p, const this_is_private &):
-mObjectParent(p)
-{}
-
-
-template<typename parent, typename child>
-const std::weak_ptr<const parent> Child<parent, child>::getParent() const {
-  return mObjectParent;
-}
-
-
-class A;
-
-class B : public Child<A,B> {
-public:
-  B(std::weak_ptr<A> p, const this_is_private &t) : Child<A,B>(p, t){}
-  int count_;
-
-  //! Getter for arbitrary data member.
-  int getCount() const {return count_;}
-  
-  //! Setter for arbitrary data member.
-  void setCount(const int count) {count_ = count;}
-  
-
+    const std::weak_ptr<const parent> getParent() const {
+      return mObjectParent;
+    }
 };
 
 

@@ -17,6 +17,7 @@
  */
 
 #include "ClassA.h"
+#include "ClassB.h"
 
 #include <iostream>
 #include <memory>
