@@ -45,6 +45,18 @@ public:
     const std::weak_ptr<const parent> getParent() const;
 };
 
+template<typename parent, typename child>
+Child<parent, child>::Child(std::weak_ptr<parent> p, const this_is_private &):
+mObjectParent(p)
+{}
+
+
+template<typename parent, typename child>
+const std::weak_ptr<const parent> Child<parent, child>::getParent() const {
+  return mObjectParent;
+}
+
+
 class A;
 
 class B : public Child<A,B> {

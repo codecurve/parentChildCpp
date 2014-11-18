@@ -54,6 +54,28 @@ public:
     std::shared_ptr<child> createChild();
 };
 
+
+template<typename parent, typename child>
+childCollectionConstT<parent, child> Parent<parent, child>::getChildrenReadOnly() const {
+  childCollectionConstT<parent, child> childrenConst(children.begin(), children.end()); // Have to copy to get const version.
+  return childrenConst;
+}
+
+
+template<typename parent, typename child>
+childCollectionT<parent, child> Parent<parent, child>::getChildren() {
+  return children;
+}
+
+
+template<typename parent, typename child>
+std::shared_ptr<child> Parent<parent, child>::createChild() {
+  std::shared_ptr<child> childp(Child<parent, child>::create(parent::shared_from_this()));
+  children.push_back(childp);
+  return children.back();
+}
+
+
 class B;
 
 class A: public Parent<A, B> {
